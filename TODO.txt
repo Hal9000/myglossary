@@ -1,0 +1,9 @@
+  New users?
+x How to mark words as untouched/hidden/claimed/complete/final?  (bold, italic, normal, strikethrough?)
+x Dropdown for status?
+  State complete --> review --> final
+  Hover for owner?
+  Destroy as button?
+  Other buttons? "Mark complete", "Mark reviewed"?
+
+x Set up index?

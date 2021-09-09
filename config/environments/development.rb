@@ -9,6 +9,11 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  config.serve_static_assets = true
+  config.public_file_server.enabled =true
+
+# ???  config.asset_path = proc { |path| "/words/public#{path}" }
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
