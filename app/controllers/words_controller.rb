@@ -56,6 +56,17 @@ class WordsController < ApplicationController
     end
   end
 
+  def claim
+    set_word
+    @word.status = "claimed"
+    @word.user_id = current_user
+    @word.save
+    respond_to do |format|
+        format.html { redirect_to words_url, notice: "Something didn't hit the fan" }
+        format.json { render :show, status: :ok, location: @word }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_word

@@ -2,5 +2,31 @@
 
 <%= render 'form', word: @word %>
 
-<%= link_to 'Show', @word %> |
-<%= link_to 'Back', words_path %>
+<table>
+<tr>  <!-- only if logged in and unclaimed... -->
+  <td><%= button_to 'Claim', claim_word_path if unclaimed? || (admin? && ! owner?) %></td>     <!-- FIXME path -->
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+
+<% if owner? %>  <!-- only if owner... -->
+<tr>
+  <td><%= button_to 'Finished', words_path %></td>  <!-- FIXME path -->
+  <td><%= button_to 'Back', words_path %></td>
+  <td><%= button_to 'UNCLAIM', words_path %></td>   <!-- FIXME path -->
+  <td></td>
+</tr>
+<% end %>
+
+<% if admin? %>  <!-- only if HAL... -->
+<tr>
+  <td><%= button_to 'Hide', words_path %></td>      <!-- FIXME path -->
+  <td><%= button_to 'DELETE', words_path %></td>    <!-- FIXME path -->
+  <% if ! owner? %>
+    <td><%= button_to 'UNCLAIM', words_path %></td>   <!-- FIXME path -->
+  <% end %>
+    <td><%= button_to 'Complete!', words_path %></td> <!-- FIXME path -->
+</tr>
+<% end %>
+</table>

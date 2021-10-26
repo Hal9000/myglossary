@@ -1,9 +1,23 @@
-  New users?
-x How to mark words as untouched/hidden/claimed/complete/final?  (bold, italic, normal, strikethrough?)
-x Dropdown for status?
-  State complete --> review --> final
-  Hover for owner?
-  Destroy as button?
-  Other buttons? "Mark complete", "Mark reviewed"?
+  Controller methods??
+  New _paths
+  Completing update should return you to index?
+  Hovering over icon doesn't give alt text
+  Hover over entry for OWNER
+  A "claimed" entry can be changed only by OWNER or ME
+  Only I can: hide, destroy, add new word, mark complete (reviewed)
+  Only for me: "hide" and "destroy" icons (instantaneous, returning to index?)
 
+x Fix "root" (front) page
+x Front page doesn't show login...?
+x New user signup/login on front page?
+x Add field(s) to user profile  (first/last, ...)
+x New users?
+x Button for: "I claim" this one (must be unclaimed)
+x Button for: "Finished, needs review" this one (must be claimed by this user)
+x Button for: "Reviewed and OK" (must be ME)
+x Button for: "Hide" (must be ME) (no one but me can edit/show)
+x How to mark words as unclaimed/hidden/claimed/in-progress/draft/complete?  claimed completed draft hidden in-progress unclaimed
+x Dropdown for status?
+x Images needed: x/delete, "hide this"
 x Set up index?
+

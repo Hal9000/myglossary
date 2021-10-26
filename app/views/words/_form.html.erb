@@ -23,7 +23,10 @@
   </td>
   <td>
     <%= form.text_field :word %>
-    <%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', word, method: :delete, data: { confirm: 'Are you sure?' } if admin? %>
+    <!-- ^ change to image; HAL only! -->
+
+    <!-- add buttons: Hide (if HAL), Finish; go back to index?? -->
   </td>
   </div>
 </tr>

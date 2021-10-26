@@ -2,26 +2,44 @@
 
 <h1>Words</h1>
 
+<% if true %>  <!-- logged in as HAL -->
+  <%= button_to 'New Word', new_word_path %>
+<% end %>
+
 <table>
 
   <tbody>
-    <% words = @words.to_a 
-#      words.sort {|a,b| a.word.downcase <=> b.word.downcase }  # _by {|x| x.word.downcase }
-       initials = words.map {|x| x.word[0].upcase }
-       initials = initials.uniq.sort - ['(']    # annoying, wtf
-       initials.each do |letter| 
+    <% words = @words.to_a.sort_by {|x| x.word[0].upcase }
+       grouping = {"0-9" => []}
+       words.each do |word|
+         ch = word.word[0].upcase
+         case ch
+           when '(';        (grouping["0-9"] ||= []) << word
+           when '0'..'9';   (grouping["0-9"] ||= []) << word
+           when 'A'..'Z';   (grouping[ch] ||= [])    << word
+           else
+             # Hmm...?
+         end
+       end
+       prefix = {}
+       grouping.each_pair do |letter, entries| 
     %>
         <tr><td colspan=99><h1><%= letter %></h1><hr></td></tr>
     <%
-         list = words.select {|x| x.word[0].upcase == letter }
-         list = list.sort_by {|x| x.word.downcase }
+         # list = words.select {|x| x.word[0].upcase == letter }
+         list = entries
+         next if list.empty?
+         list = entries.sort_by {|x| x.word.downcase }
          list.each_slice(3) do |row| 
     %>
       <tr>
         <% row.each do |word| %>
            <td valign=top>
-             <img src=/icons/<%= word.status %>.png width=16 height=16>
-             <%= link_to word.word, edit_word_path(word) %></td>
+             <img src="/icons/<%= word.status %>.png" width=16 height=16 alt="<%= word.status %>"> &nbsp;
+             <!-- %= link_to 'x', word, method: :delete, data: { confirm: 'Are you sure?' } % -->
+             <!-- %= link_to 'Hide', word } % -->
+             <a href=<%= edit_word_path(word) %> style='text-decoration: none'><%= word.word %></a>
+           </td>
         <% end %>
       </tr>
       <% end %>
@@ -31,4 +49,3 @@
 
 <br>
 
-<%= link_to 'New Word', new_word_path %>
