@@ -56,10 +56,31 @@ class WordsController < ApplicationController
     end
   end
 
+  def finish
+    set_word
+    @word.status = "finished"
+    @word.save
+    respond_to do |format|
+        format.html { redirect_to words_url, notice: "Marked finished" }
+        format.json { render :show, status: :ok, location: @word }
+    end
+  end
+
+  def unclaim
+    set_word
+    @word.status = "unclaimed"
+    @word.user_id = nil
+    @word.save
+    respond_to do |format|
+        format.html { redirect_to words_url, notice: "Marked unclaimed" }
+        format.json { render :show, status: :ok, location: @word }
+    end
+  end
+
   def claim
     set_word
     @word.status = "claimed"
-    @word.user_id = current_user
+    @word.user_id = current_user.id
     @word.save
     respond_to do |format|
         format.html { redirect_to words_url, notice: "Something didn't hit the fan" }

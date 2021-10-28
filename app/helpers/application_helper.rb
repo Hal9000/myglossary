@@ -1,5 +1,5 @@
 module ApplicationHelper
   def admin?
-    current_user == 0
+    current_user == 1
   end
 end
