@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Words</h1>
 
-<% if true %>  <!-- logged in as HAL -->
+<p id="notice"><%= notice %></p>
+
+<% if admin? %>  <!-- logged in as HAL -->
   <%= button_to 'New Word', new_word_path %>
 <% end %>
 
