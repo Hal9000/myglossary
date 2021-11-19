@@ -1,3 +1,5 @@
+  Word "owner" - display, not for update
+  Seeds? (sqlite db is in git for now)
   Controller methods??
   New _paths
   Completing update should return you to index?
@@ -6,6 +8,7 @@
   A "claimed" entry can be changed only by OWNER or ME
   Only I can: hide, destroy, add new word, mark complete (reviewed)
   Only for me: "hide" and "destroy" icons (instantaneous, returning to index?)
+  Switch to postgres
 
 x Fix "root" (front) page
 x Front page doesn't show login...?
