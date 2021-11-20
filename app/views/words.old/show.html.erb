@@ -1,0 +1,22 @@
+<p>
+  <strong>Word:</strong>
+  <%= @word.word %>
+</p>
+
+<p>
+  <strong>Definition:</strong>
+  <%= @word.definition %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @word.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @word.user_id %>
+</p>
+
+<%= button_to 'Edit', edit_word_path(@word) %> |
+<%= button_to 'Back', words_path %>

@@ -1,0 +1,70 @@
+<%= form_with(model: word, local: true) do |form| %>
+  <% if word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(word.errors.count, "error") %> prohibited this word from being saved:</h2>
+
+      <ul>
+        <% word.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<hr>
+<font size=+2><%= word.word %></font>
+<hr>
+
+<table>
+<tr>
+  <div class="field">
+  <td>
+    <%= form.label :word %>
+  </td>
+  <td>
+    <%= form.text_field :word %>
+    <%= link_to 'Delete', word, method: :delete, data: { confirm: 'Are you sure?' } if admin? %>
+    <!-- ^ change to image; HAL only! -->
+
+    <!-- add buttons: Hide (if HAL), Finish; go back to index?? -->
+  </td>
+  </div>
+</tr>
+
+
+<tr>
+  <div class="field">
+  <td>
+    <%= form.label :definition %>
+  </td>
+  <td>
+    <%= form.text_area :definition, rows: 20, cols: 50 %>
+  </td>
+  </div>
+
+<tr>
+  <div class="field">
+  <td>
+    <%= form.label :status %>
+  </td>
+  <td>
+    <%= form.select :status, Word::StatusList, default: "unclaimed" %>
+  </td>
+  </div>
+</tr>
+
+<tr>
+  <div class="field">
+  <td>
+  </td>
+  <td>
+    <%= @word.printed_name %>
+  </td>
+  </div>
+</tr>
+</table>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

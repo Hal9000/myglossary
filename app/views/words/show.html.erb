@@ -1,22 +1,25 @@
-<p>
-  <strong>Word:</strong>
-  <%= @word.word %>
-</p>
+<%- model_class = Word -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Definition:</strong>
-  <%= @word.definition %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:word) %>:</strong></dt>
+  <dd><%= @word.word %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:definition) %>:</strong></dt>
+  <dd><%= @word.definition %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @word.status %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @word.user_id %></dd>
+</dl>
 
-<p>
-  <strong>Status:</strong>
-  <%= @word.status %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @word.user_id %>
-</p>
-
-<%= button_to 'Edit', edit_word_path(@word) %> |
-<%= button_to 'Back', words_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              words_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_word_path(@word), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              word_path(@word),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

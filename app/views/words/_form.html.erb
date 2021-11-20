@@ -1,70 +1,55 @@
-<%= form_with(model: word, local: true) do |form| %>
-  <% if word.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(word.errors.count, "error") %> prohibited this word from being saved:</h2>
+<%= form_for @word, :html => { :class => "form-horizontal word" } do |f| %>
 
-      <ul>
-        <% word.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+  <% if @word.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@word.errors.count, "error") %> prohibited this word from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @word.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-      </ul>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-<hr>
-<font size=+2><%= word.word %></font>
-<hr>
-
-<table>
-<tr>
-  <div class="field">
-  <td>
-    <%= form.label :word %>
-  </td>
-  <td>
-    <%= form.text_field :word %>
-    <%= link_to 'Delete', word, method: :delete, data: { confirm: 'Are you sure?' } if admin? %>
-    <!-- ^ change to image; HAL only! -->
-
-    <!-- add buttons: Hide (if HAL), Finish; go back to index?? -->
-  </td>
+  <div class="form-group">
+    <%= f.label :word, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :word, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:word) %>
   </div>
-</tr>
-
-
-<tr>
-  <div class="field">
-  <td>
-    <%= form.label :definition %>
-  </td>
-  <td>
-    <%= form.text_area :definition, rows: 20, cols: 50 %>
-  </td>
+  <div class="form-group">
+    <%= f.label :definition, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :definition, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:definition) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :status, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :status, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:status) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :user_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :user_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:user_id) %>
   </div>
 
-<tr>
-  <div class="field">
-  <td>
-    <%= form.label :status %>
-  </td>
-  <td>
-    <%= form.select :status, Word::StatusList, default: "unclaimed" %>
-  </td>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                words_path, :class => 'btn btn-default' %>
+    </div>
   </div>
-</tr>
 
-<tr>
-  <div class="field">
-  <td>
-  </td>
-  <td>
-    <%= @word.printed_name %>
-  </td>
-  </div>
-</tr>
-</table>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

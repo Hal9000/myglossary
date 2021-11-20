@@ -22,7 +22,7 @@
          end
        end
        prefix = {}
-       grouping.each_pair do |letter, entries|
+       grouping.each_pair do |letter, entries| 
     %>
         <tr><td colspan=99><h1><%= letter %></h1><hr></td></tr>
     <%
@@ -30,7 +30,7 @@
          list = entries
          next if list.empty?
          list = entries.sort_by {|x| x.word.downcase }
-         list.each_slice(3) do |row|
+         list.each_slice(3) do |row| 
     %>
       <tr>
         <% row.each do |word| %>

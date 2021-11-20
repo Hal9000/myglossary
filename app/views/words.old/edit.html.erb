@@ -1,0 +1,35 @@
+<h1>Editing Word</h1>
+
+<%= render 'form', word: @word %>
+
+<b><%= "owner = #{owner?}   admin = #{admin?}" %></b>
+<b><%= "current = #{current_user}  word = #{@word.inspect}   word userid = #{@word.user_id}" %></b>
+
+<table>
+<tr>  <!-- only if logged in and unclaimed... -->
+  <td><%= button_to 'Claim', claim_word_path if unclaimed? || (admin? && ! owner?) %></td>     <!-- FIXME path -->
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+
+<% if owner? %>  <!-- only if owner... -->
+<tr>
+  <td><%= button_to 'Finished', finish_word_path %></td>  <!-- FIXME path -->
+  <td><%= button_to 'Back', words_path %></td>
+  <td><%= button_to 'UNCLAIM', unclaim_word_path %></td>   <!-- FIXME path -->
+  <td></td>
+</tr>
+<% end %>
+
+<% if admin? %>  <!-- only if HAL... -->
+<tr>
+  <td><%= button_to 'Hide', words_path %></td>      <!-- FIXME path -->
+  <td><%= button_to 'DELETE', words_path %></td>    <!-- FIXME path -->
+  <% if ! owner? %>
+    <td><%= button_to 'UNCLAIM', unclaim_word_path %></td>   <!-- FIXME path -->
+  <% end %>
+    <td><%= button_to 'Complete!', words_path %></td> <!-- FIXME path -->
+</tr>
+<% end %>
+</table>
