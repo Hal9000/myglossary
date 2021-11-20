@@ -9,4 +9,20 @@ class Word < ApplicationRecord
     return "" unless user.present?
     "#{user.first_name} #{user.last_name}"
   end
+
+  def self.group_by_character
+    grouping = {"0-9" => []}
+    all.sort_by {|x| x.word[0].upcase }.each do |word|
+      ch = word.word[0].upcase
+      case ch
+      when '(';        (grouping["0-9"] ||= []) << word
+      when '0'..'9';   (grouping["0-9"] ||= []) << word
+      when 'A'..'Z';   (grouping[ch] ||= [])    << word
+      else
+        # Hmm...?
+      end
+    end
+
+    grouping
+  end
 end
