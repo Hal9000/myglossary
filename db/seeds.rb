@@ -11,6 +11,7 @@ User.find_or_create_by(email: ENV.fetch("ADMIN_EMAIL")) do |user|
   user.password = ENV.fetch("ADMIN_PASSWORD")
   user.first_name = ENV.fetch("ADMIN_FIRST_NAME")
   user.last_name = ENV.fetch("ADMIN_LAST_NAME")
+  user.admin = true
 end
 
 words = %w(apollo able baker delta epsilon)
