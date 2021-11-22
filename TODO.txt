@@ -1,5 +1,4 @@
   Word "owner" - display, not for update
-  Seeds? (sqlite db is in git for now)
   Controller methods??
   New _paths
   Completing update should return you to index?
@@ -10,6 +9,7 @@
   Only for me: "hide" and "destroy" icons (instantaneous, returning to index?)
   Switch to postgres
 
+x Seeds? (sqlite db is in git for now)
 x Fix "root" (front) page
 x Front page doesn't show login...?
 x New user signup/login on front page?

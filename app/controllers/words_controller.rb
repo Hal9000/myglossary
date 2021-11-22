@@ -1,5 +1,5 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: %i[ show edit update destroy ]
+  before_action :set_word, only: %i[ update_status show edit update destroy finish claim unclaim ]
 
   # GET /words or /words.json
   def index
@@ -37,7 +37,14 @@ class WordsController < ApplicationController
   # PATCH/PUT /words/1 or /words/1.json
   def update
     respond_to do |format|
-      if @word.update(word_params)
+      word_hash = word_params
+      if params[:commit] == "Save"
+        word_hash[:status] = Word::STATUS_DRAFT
+      else
+        word_hash[:status] = Word::STATUS_IN_PROGRESS if @word.status == Word::STATUS_CLAIMED
+      end
+
+      if @word.update(word_hash)
         format.html { redirect_to words_path, notice: "Word was successfully updated." }
         format.json { render :show, status: :ok, location: @word }
       else
@@ -56,9 +63,8 @@ class WordsController < ApplicationController
     end
   end
 
-  def finish
-    set_word
-    @word.status = "finished"
+  def complete
+    @word.status = "completed"
     @word.save
     respond_to do |format|
         format.html { redirect_to words_url, notice: "Marked finished" }
@@ -67,7 +73,6 @@ class WordsController < ApplicationController
   end
 
   def unclaim
-    set_word
     @word.status = "unclaimed"
     @word.user_id = nil
     @word.save
@@ -78,7 +83,6 @@ class WordsController < ApplicationController
   end
 
   def claim
-    set_word
     @word.status = "claimed"
     @word.user_id = current_user.id
     @word.save

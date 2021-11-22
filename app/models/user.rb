@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :word
 
+  def name
+    "#{first_name} #{last_name}".strip
+  end
+
 end

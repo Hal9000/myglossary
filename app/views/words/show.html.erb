@@ -7,19 +7,21 @@
   <dt><strong><%= model_class.human_attribute_name(:word) %>:</strong></dt>
   <dd><%= @word.word %></dd>
   <dt><strong><%= model_class.human_attribute_name(:definition) %>:</strong></dt>
-  <dd><%= @word.definition %></dd>
+  <dd><%= simple_format @word.definition %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
   <dd><%= @word.status %></dd>
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @word.user_id %></dd>
+  <dd><%= @word.user.name %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               words_path, :class => 'btn btn-secondary'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_word_path(@word), :class => 'btn btn-secondary' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+<%# link_to t('.destroy', :default => t("helpers.links.destroy")),
               word_path(@word),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+
+

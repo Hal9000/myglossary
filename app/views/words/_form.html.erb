@@ -33,6 +33,7 @@
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= f.submit "Save", :class => 'btn btn-primary' if @word.persisted? %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 words_path, :class => 'btn btn-secondary' %>
     </div>
