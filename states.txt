@@ -1,0 +1,90 @@
+NOTES:
+------
+1. This deals with how pages/buttons look/behave based on PAGE, WORD STATE, and USER
+2. Probably ignore "hidden" at first? Gotta think about this more
+3. The admin user can see multiple little icons (unclaim, destroy, ...?)
+4. Make "word itself" uneditable except by admin?
+5. admin can see "status" dropdown in update
+
+=====================================================================================================
+
+Index page:
+
+STATE / USER  Admin                        Owner                        Random Guy
+------------  ---------------------------  ---------------------------  ---------------------------
+unclaimed     icon-unclaimed: will Claim   (no owner)                   icon-unclaimed: will Claim 
+              link: update-page                                         link: show-page
+              (extra icons)
+
+claimed       icon-claimed: update-page    icon-claimed: update-page    icon-claimed: nothing/err?
+              link: update-page                                         link: show-page
+              (extra icons)
+
+in progress   icon-inprog: update-page     icon-inprog: update-page     icon-inprog: nothing/err?
+              link: update-page            link: show-page              link: show-page
+              (extra icons)
+
+hidden        n/a                          n/a                          n/a
+
+draft         icon-draft: update-page      icon-draft: update-page      icon-draft: nothing/err?
+              link: update-page            link: show-page              link: show-page
+              (extra icons)
+
+completed     icon-complete: update-page   icon-complete: nothing/err?  icon-complete: nothing/err?
+              link: update-page            link: show-page              link: show-page 
+              (extra icons)
+
+
+=====================================================================================================
+
+
+Edit page:
+
+STATE / USER  Admin                        Owner                        Random Guy
+------------  ---------------------------  ---------------------------  ---------------------------
+unclaimed     Update cancel destroy hide   n/a                          n/a
+              (state as dropdown)
+
+claimed       Update cancel destroy hide   Update cancel unclaim        n/a
+              unclaim  
+              (state as dropdown)
+
+in progress   Update cancel destroy hide   Update cancel unclaim Save   n/a
+              unclaim  
+              (state as dropdown)
+
+hidden        Unhide Update cancel         n/a                          n/a
+              destroy 
+              (state as dropdown)
+
+draft         Update cancel destroy hide   n/a                          n/a
+              Complete
+              (state as dropdown)
+
+completed     Update cancel destroy hide   n/a                          n/a
+              (state as dropdown)
+
+
+=====================================================================================================
+
+Show page:
+
+STATE / USER  Admin                        Owner                        Random Guy
+------------  ---------------------------  ---------------------------  ---------------------------
+unclaimed     Update Back destroy hide     Back                         Back
+              (Does admin need "show"?)    
+
+claimed       Update Back destroy hide     Update Back unclaim          Claim? Back
+              unclaim  
+
+in progress   Update Back destroy hide     Update Back unclaim Save     Back
+              unclaim Save 
+
+hidden        ?? Unhide Update Back        n/a                          n/a
+              destroy 
+
+draft         Update Back destroy hide     Back                         Back
+              Complete
+
+completed     Update Back destroy hide     Back                         Back
+
