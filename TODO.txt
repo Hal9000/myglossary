@@ -1,14 +1,16 @@
+  notes should also be text/textarea (search for "HF")
+  See file states.txt
   Word "owner" - display, not for update
   Controller methods??
   New _paths
   Completing update should return you to index?
-  Hovering over icon doesn't give alt text
   Hover over entry for OWNER
   A "claimed" entry can be changed only by OWNER or ME
   Only I can: hide, destroy, add new word, mark complete (reviewed)
   Only for me: "hide" and "destroy" icons (instantaneous, returning to index?)
   Switch to postgres
 
+x Changed alt to title - OK??
 x Seeds? (sqlite db is in git for now)
 x Fix "root" (front) page
 x Front page doesn't show login...?
