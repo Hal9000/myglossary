@@ -17,9 +17,9 @@
       <div class='col-md-4'>
         <% case word.status %>
         <% when Word::STATUS_UNCLAIMED %>
-          <%= link_to claim_word_path(word),  method: :post do %><img src="/icons/<%= word.status %>.png" width=16 height=16 title="is <%= word.status %>" class="mx-2"><% end %>
+          <%= link_to claim_word_path(word),  method: :post do %><img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2"><% end %>
         <% else %>
-          <img src="/icons/<%= word.status %>.png" width=16 height=16 alt="<%= word.status %>" class="mx-2">
+          <img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2">
         <% end %>
 
         <% case word.status %>
