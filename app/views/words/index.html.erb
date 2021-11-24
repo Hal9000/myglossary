@@ -15,26 +15,26 @@
   <div class="row">
     <% entries.each do |word| %>
       <div class='col-md-4'>
-        <% case word.status %>
-        <% when Word::STATUS_UNCLAIMED %>
-          <%= link_to claim_word_path(word),  method: :post do %><img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2"><% end %>
+        <% icon_path_data = index_action_path_data(word, current_user) %>
+
+        <% if icon_path_data.present? %>
+          <% path = icon_path_data[:icon_path] %>
+          <% method = icon_path_data[:icon_method] %>
+
+          <% if path.present? %>
+            <%# One live to avoid undercore issue %>
+            <%= link_to send(path, word), method: method do %><img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2"><% end %>
+          <% else %>
+            <img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2">
+          <% end %>
         <% else %>
           <img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2">
         <% end %>
 
-        <% case word.status %>
-        <% when Word::STATUS_DRAFT %>
-          <% if word.can_edit_draft?(current_user) %>
-            <a href=<%= edit_word_path(word) %> style='text-decoration: none'><%= word.word %></a>
-          <% else %>
-            <a href=<%= word_path(word) %> style='text-decoration: none'><%= word.word %></a>
-          <% end %>
+        <% if icon_path_data&.dig(:link_path).present? %>
+          <%= link_to word.word, send(icon_path_data.dig(:link_path), word), style: "text-decoration: none" %>
         <% else %>
-          <% if word.can_edit?(current_user) %>
-            <a href=<%= edit_word_path(word) %> style='text-decoration: none'><%= word.word %></a>
-          <% else %>
-            <a href=<%= word_path(word) %> style='text-decoration: none'><%= word.word %></a>
-          <% end %>
+          <%= word.word %>
         <% end %>
       </div>
     <% end %>

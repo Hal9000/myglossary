@@ -10,8 +10,10 @@
   <dd><%= simple_format @word.definition %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
   <dd><%= @word.status %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @word.user.name %></dd>
+  <% if @word.user.present? %>
+    <dt><strong><%= model_class.human_attribute_name(:owner) %>:</strong></dt>
+    <dd><%= @word.user&.name || "Unclaimed" %></dd>
+  <% end %>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
