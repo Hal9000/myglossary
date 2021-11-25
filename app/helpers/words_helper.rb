@@ -22,15 +22,17 @@ module WordsHelper
   end
 
   def index_action_path_lookup(word, user)
-    claim_edit = { icon_path: :claim_word_path, icon_method: :post, 
+    claim_edit = { icon_path: :claim_word_path, icon_method: :post,
                    link_path: :edit_word_path,  link_method: :get }
-    edit_edit  = { icon_path: :edit_word_path,  icon_method: :get, 
+    edit_edit  = { icon_path: :edit_word_path,  icon_method: :get,
                    link_path: :edit_word_path,  link_method: :get }
-    no_owner   = { icon_path: nil,              method:      :get, 
-                   link_path: :word_path,       link_method: :get },
-    claim_show = { icon_path: :claim_word_path, icon_method: :post, 
+    edit_show  = { icon_path: :edit_word_path,  icon_method: :get,
                    link_path: :word_path,       link_method: :get }
-    show_show  = { icon_path: :word_path,       icon_method: :get, 
+    no_owner   = { icon_path: nil,              icon_method: :get,
+                   link_path: :word_path,       link_method: :get },
+    claim_show = { icon_path: :claim_word_path, icon_method: :post,
+                   link_path: :word_path,       link_method: :get }
+    show_show  = { icon_path: :word_path,       icon_method: :get,
                    link_path: :word_path,       link_method: :get }
 
     @icon_action_path_lookup = if user.admin?
@@ -65,14 +67,13 @@ module WordsHelper
     lookup[word.status]
   end
 
-
   def edit_action_data_lookup(word, user)
     admin_usual = [:update, :cancel, :destroy, :hide]
     @icon_action_path_lookup = if user.admin?
       {
-        Word::STATUS_UNCLAIMED   => [:claim]   + admin_usual,   
-        Word::STATUS_CLAIMED     => [:unclaim] + admin_usual,   
-        Word::STATUS_IN_PROGRESS => [:unclaim] + admin_usual,   
+        Word::STATUS_UNCLAIMED   => [:claim]   + admin_usual,
+        Word::STATUS_CLAIMED     => [:unclaim] + admin_usual,
+        Word::STATUS_IN_PROGRESS => [:unclaim] + admin_usual,
         Word::STATUS_DRAFT       => [:save]    + admin_usual,     # rename save??
         Word::STATUS_COMPLETED   => admin_usual
       }
