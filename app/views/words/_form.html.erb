@@ -31,14 +31,14 @@
   <div class="form-group">
     <%= f.label :definition, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_area :definition, :class => 'form-control', rows: 8 %>
+      <%= f.text_area :definition, :class => 'form-control', rows: 8, cols: 50 %>
     </div>
     <%=f.error_span(:definition) %>
   </div>
   <div class="form-group">  <!-- HF did I do this right? -->
     <%= f.label :notes, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_area :notes, :class => 'form-control', rows: 10 %>
+      <%= f.text_area :notes, :class => 'form-control', rows: 10, cols: 50  %>
     </div> <!-- HF see table below - want it *next* to this -->
     <%=f.error_span(:notes) %>
   </div>

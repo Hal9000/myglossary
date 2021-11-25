@@ -1,15 +1,19 @@
-  notes should also be text/textarea (search for "HF")
-  See file states.txt
-  Word "owner" - display, not for update
-  Controller methods??
-  New _paths
-  Completing update should return you to index?
-  Hover over entry for OWNER
-  A "claimed" entry can be changed only by OWNER or ME
-  Only I can: hide, destroy, add new word, mark complete (reviewed)
-  Only for me: "hide" and "destroy" icons (instantaneous, returning to index?)
-  Switch to postgres
+  textarea cols: 50 not working
+  automated tests for user/permissions stuff??
+  proper way to add "legend" to right of word notes field?
+  See file states.txt - mostly done??
+  Hover over entry for OWNER? (requires some changes)
+  Deploy to my server
+  
 
+x A "claimed" entry can be changed only by OWNER or ME
+x Only I can: hide, destroy, add new word, mark complete (reviewed)
+x Only for me: "hide" and "destroy" icons (instantaneous, returning to index?)
+x Completing update should return you to index?
+x New _paths
+x Word "owner" - display, not for update
+x Controller methods??
+x notes should also be text/textarea (search for "HF")
 x Changed alt to title - OK??
 x Seeds? (sqlite db is in git for now)
 x Fix "root" (front) page
