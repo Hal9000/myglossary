@@ -14,6 +14,8 @@
     <dt><strong><%= model_class.human_attribute_name(:owner) %>:</strong></dt>
     <dd><%= @word.user&.name || "Unclaimed" %></dd>
   <% end %>
+  <dt><strong><%= model_class.human_attribute_name(:notes) %>:</strong></dt>
+  <dd><%= simple_format @word.notes %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
