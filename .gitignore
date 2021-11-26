@@ -80,3 +80,5 @@ yarn-debug.log*
 .yarn-integrity
 
 .c9/
+
+config/database.yml

@@ -6,11 +6,10 @@ ruby '2.7.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.4'
 
-if `whoami`.chomp == "Hal"
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.4'
-else
+if ENV["DEV_NAME"].to_s.downcase == "mykl"
   gem 'pg'
+else
+  gem 'sqlite3', '~> 1.4'
 end
 
 # Use Puma as the app server
