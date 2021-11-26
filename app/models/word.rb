@@ -17,7 +17,31 @@ class Word < ApplicationRecord
   end
 
   def can_edit?(user)
+    if word.status == STATUS_DRAFT
+      can_edit_draft?(user)
+    else
+      user.admin? || owner?(user)
+    end
+  end
+
+  def can_update?(user)
+    can_edit?(user) # May be good to combine these two methods
+  end
+
+  def can_destroy?(user)
+    user.admin?
+  end
+
+  def can_complete?(user)
+    user.admin?
+  end
+
+  def can_unclaim?(user)
     user.admin? || owner?(user)
+  end
+
+  def can_claim?(user)
+    word.status == STATUS_UNCLAIMED && user.present?
   end
 
   def owner?(user)

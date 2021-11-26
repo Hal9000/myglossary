@@ -1,12 +1,16 @@
-  textarea cols: 50 not working
-  automated tests for user/permissions stuff??
-  proper way to add "legend" to right of word notes field?
-  See file states.txt - mostly done??
-  Hover over entry for OWNER? (requires some changes)
-  Add controller level access strictions (IE: prevent non-admins from creating words at the controller level)
+Todo
   Deploy to my server
 
+Needs Review
+  Add controller level access restrictions (IE: prevent non-admins from creating words at the controller level)
 
+Maybe Later
+  automated tests for user/permissions stuff??
+
+x See file states.txt
+x textarea cols: 50 not working
+x proper way to add "legend" to right of word notes field?
+x Hover over entry for OWNER? (requires some changes)
 x A "claimed" entry can be changed only by OWNER or ME
 x Only I can: hide, destroy, add new word, mark complete (reviewed)
 x Only for me: "hide" and "destroy" icons (instantaneous, returning to index?)
@@ -30,4 +34,3 @@ x How to mark words as unclaimed/hidden/claimed/in-progress/draft/complete?  cla
 x Dropdown for status?
 x Images needed: x/delete, "hide this"
 x Set up index?
-

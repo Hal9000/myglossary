@@ -21,7 +21,7 @@ class WordsController < ApplicationController
 
   # POST /words or /words.json
   def create
-    #return flash[:error] = "You cannot do that" unless @word.can_create?(current_user)
+    return flash[:error] = "You cannot do that" unless @word.can_create?(current_user)
 
     @word = Word.new(word_params)
 
@@ -38,6 +38,8 @@ class WordsController < ApplicationController
 
   # PATCH/PUT /words/1 or /words/1.json
   def update
+    return flash[:error] = "You cannot do that" unless @word.can_update?(current_user)
+
     respond_to do |format|
       word_hash = word_params
       if params[:commit].downcase.include?("save")
@@ -59,6 +61,8 @@ class WordsController < ApplicationController
 
   # DELETE /words/1 or /words/1.json
   def destroy
+    return flash[:error] = "You cannot do that" unless @word.can_destroy?(current_user)
+
     @word.destroy
     respond_to do |format|
       format.html { redirect_to words_url, notice: "Word was successfully destroyed." }
@@ -67,6 +71,8 @@ class WordsController < ApplicationController
   end
 
   def complete
+    return flash[:error] = "You cannot do that" unless @word.can_complete?(current_user)
+
     @word.status = "completed"
     @word.save
     respond_to do |format|
@@ -76,6 +82,8 @@ class WordsController < ApplicationController
   end
 
   def unclaim
+    return flash[:error] = "You cannot do that" unless @word.can_unclaim?(current_user)
+
     @word.status = "unclaimed"
     @word.user_id = nil
     @word.save
@@ -86,6 +94,8 @@ class WordsController < ApplicationController
   end
 
   def claim
+    return flash[:error] = "You cannot do that" unless @word.can_claim?(current_user)
+
     @word.status = "claimed"
     @word.user_id = current_user.id
     @word.save
