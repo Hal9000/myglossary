@@ -1,0 +1,73 @@
+<% if @word.errors.any? %>
+  <div id="error_expl" class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= pluralize(@word.errors.count, "error") %> prohibited this word from being saved:</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+      <% @word.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<!--
+     HF two things -
+     Can we display owner (if any)?
+     Make status a dropdown if admin??
+ -->
+
+<div class="form-group">
+  <%= f.label :word, :class => 'control-label col-lg-2' %>
+  <div class="col-lg-12">
+    <%= f.text_field :word, :class => 'form-control' %>
+  </div>
+  <%=f.error_span(:word) %>
+</div>
+<div class="form-group">
+  <%= f.label :definition, :class => 'control-label col-lg-2' %>
+  <div class="col-lg-12">
+    <%= f.text_area :definition, :class => 'form-control', rows: 8 %>
+  </div>
+  <%=f.error_span(:definition) %>
+</div>
+<div class="form-group">  <!-- HF did I do this right? -->
+  <%= f.label :notes, :class => 'control-label col-lg-2' %>
+  <div class="col-lg-12">
+    <%= f.text_area :notes, :class => 'form-control', rows: 10  %>
+  </div> <!-- HF see table below - want it *next* to this -->
+  <%=f.error_span(:notes) %>
+</div>
+
+<div class="form-group">
+  <div class="col-lg-offset-2 col-lg-12">
+    <%- available_actions = edit_action_data_lookup(@word, current_user).to_h.dig(@word.status) %>
+
+    <% if available_actions.include?(:update) %>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    <% end %>
+
+    <% if available_actions.include?(:claim) %>
+      <%= f.submit "Claim and Update", :class => 'btn btn-info' %>
+    <% end %>
+
+    <% if available_actions.include?(:save) %>
+      <%= f.submit "Save", :class => 'btn btn-primary' if @word.persisted? %>
+    <% end %>
+
+    <% if available_actions.include?(:hide) %>
+      <%= link_to "Hide (N/I)", "#", :class => 'btn btn-warning' %>
+    <% end %>
+
+    <% if available_actions.include?(:destroy) %>
+      <%= link_to "Destroy", word_path(@word), :class => 'btn btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+
+    <% if available_actions.include?(:cancel) %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                words_path, :class => 'btn btn-secondary' %>
+    <% end %>
+  </div>
+</div>

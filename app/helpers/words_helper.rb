@@ -12,10 +12,6 @@ module WordsHelper
     @word.status == Word::STATUS_UNCLAIMED
   end
 
-  WORD_MAP = {
-
-  }
-
   def index_action_path_data(word, user)
     lookup = index_action_path_lookup(word, user)
     lookup[word.status]
@@ -29,13 +25,13 @@ module WordsHelper
     edit_show  = { icon_path: :edit_word_path,  icon_method: :get,
                    link_path: :word_path,       link_method: :get }
     no_owner   = { icon_path: nil,              icon_method: :get,
-                   link_path: :word_path,       link_method: :get },
+                   link_path: :word_path,       link_method: :get }
     claim_show = { icon_path: :claim_word_path, icon_method: :post,
                    link_path: :word_path,       link_method: :get }
     show_show  = { icon_path: :word_path,       icon_method: :get,
                    link_path: :word_path,       link_method: :get }
 
-    @icon_action_path_lookup = if user.admin?
+    if user.admin?
       {
         Word::STATUS_UNCLAIMED   => claim_edit,
         Word::STATUS_CLAIMED     => edit_edit,

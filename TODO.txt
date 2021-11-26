@@ -3,8 +3,9 @@
   proper way to add "legend" to right of word notes field?
   See file states.txt - mostly done??
   Hover over entry for OWNER? (requires some changes)
+  Add controller level access strictions (IE: prevent non-admins from creating words at the controller level)
   Deploy to my server
-  
+
 
 x A "claimed" entry can be changed only by OWNER or ME
 x Only I can: hide, destroy, add new word, mark complete (reviewed)

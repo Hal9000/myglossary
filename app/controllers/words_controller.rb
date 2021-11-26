@@ -21,6 +21,8 @@ class WordsController < ApplicationController
 
   # POST /words or /words.json
   def create
+    #return flash[:error] = "You cannot do that" unless @word.can_create?(current_user)
+
     @word = Word.new(word_params)
 
     respond_to do |format|
@@ -38,8 +40,9 @@ class WordsController < ApplicationController
   def update
     respond_to do |format|
       word_hash = word_params
-      if params[:commit] == "Save"
-        word_hash[:status] = Word::STATUS_DRAFT
+      if params[:commit].downcase.include?("save")
+      elsif params[:commit].downcase.include?("claim")
+        word_hash[:status] = Word::STATUS_CLAIMED
       else
         word_hash[:status] = Word::STATUS_IN_PROGRESS if @word.status == Word::STATUS_CLAIMED
       end
@@ -100,6 +103,6 @@ class WordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def word_params
-      params.require(:word).permit(:word, :definition, :status, :user_id)
+      params.require(:word).permit(:word, :definition, :status, :user_id, :notes)
     end
 end

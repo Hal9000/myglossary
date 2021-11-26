@@ -32,9 +32,9 @@
         <% end %>
 
         <% if icon_path_data&.dig(:link_path).present? %>
-          <%= link_to word.word, send(icon_path_data.dig(:link_path), word), style: "text-decoration: none" %>
+          <%= link_to word.word, send(icon_path_data.dig(:link_path), word), style: "text-decoration: none", title: "Owner: #{word&.user&.name || "unclaimed"}" %>
         <% else %>
-          <%= word.word %>
+          <span title="Owner: #{word&.user&.name || "unclaimed"}"><%= word.word %></span>
         <% end %>
       </div>
     <% end %>
