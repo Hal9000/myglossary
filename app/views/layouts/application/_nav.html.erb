@@ -10,7 +10,8 @@
       </ul>
       <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
         <% if current_user.present? %>
-          <%= navbar_link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          <% signout = "User: #{current_user.name}  Sign out" %>
+          <%= navbar_link_to signout, destroy_user_session_path, method: :delete %>
         <% else %>
           <%= navbar_link_to "Sign In", new_user_session_path %>
         <% end %>

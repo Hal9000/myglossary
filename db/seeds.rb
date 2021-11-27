@@ -6,13 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.find_or_create_by(email: ENV.fetch("ADMIN_EMAIL")) do |user|
-  puts "Seeding Admin User"
-  user.password = ENV.fetch("ADMIN_PASSWORD")
-  user.first_name = ENV.fetch("ADMIN_FIRST_NAME")
-  user.last_name = ENV.fetch("ADMIN_LAST_NAME")
-  user.admin = true
-end
+# User.find_or_create_by(email: ENV.fetch("ADMIN_EMAIL")) do |user|
+#   puts "Seeding Admin User"
+#   user.password = ENV.fetch("ADMIN_PASSWORD")
+#   user.first_name = ENV.fetch("ADMIN_FIRST_NAME")
+#   user.last_name = ENV.fetch("ADMIN_LAST_NAME")
+#   user.admin = true
+# end
+
+User.connection
+
+User.create(email: "admin@foo.bar",  first_name: "Alan",   last_name: "Admin",  admin: true, password: "admin1")
+User.create(email: "worker@foo.bar", first_name: "Wilbur", last_name: "Worker", admin: nil, password: "worker1")
+User.create(email: "rando@foo.bar",  first_name: "Marlon", last_name: "Rando",  admin: nil, password: "rando1")
 
 # words = %w(apollo able baker delta epsilon)
 

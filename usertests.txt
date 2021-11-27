@@ -1,0 +1,31 @@
+       User             Page/action                 Expected result
+       ---------------  -----------------------     -------------------
+P   0. Not logged in    (anywhere)                  Login/signup page
+  
+P   1. admin            hit index                   Just works. Has "New word" button
+P   2. admin            hover over word             Shows owner
+P   3. admin            click icon: unclaimed       Word is claimed, go back to index
+P   4. admin            click unclaimed word        Edit page. Has buttons: Update Claim Hide Destroy Cancel
+P   5. admin            click claimed word          Edit page. Has buttons: Update Unclaim Hide Destroy Cancel
+P   6. admin            click in-prog word          Edit page. Has buttons: Update Save Unclaim Hide Destroy Cancel
+P   7. admin            click draft word            Edit page. Has buttons: Update Complete Unclaim Hide Destroy Cancel
+P   8. admin            click completed word        Edit page. Has buttons: Update Hide Destroy Cancel
+  
+P   9. worker           hit index                   Just works. No "New word"
+P  10. admin            hover over word             Shows owner
+P  11. worker           click icon: unclaimed       Word is claimed, go back to index
+P  12. worker           click unclaimed word        Show page  (add Claim button??)
+   13. worker           click my claimed word       Edit page. Has buttons: Update Unclaim Cancel
+   14. worker           click word (not mine)       Show page
+   15. worker           click my in-prog word       Edit page. Has buttons: Update Save Unclaim Cancel
+   16. worker           click my draft word         Show page
+   17. worker           click my completed word     Show page
+
+P  18. rando            hit index                   Just works. No "New word"
+P  19. admin            hover over word             Shows owner
+P  20. rando            click icon: unclaimed       Word is claimed, go back to index
+   21. rando            click unclaimed word        Show page  (add Claim button??)
+   22. rando            click claimed/"not mine"    Show page
+   23. rando            click in-prog/"not mine"    Show page
+   24. rando            click draft/"not mine"      Show page
+   25. rando            click complete/"not mine"   Show page

@@ -17,7 +17,8 @@ class Word < ApplicationRecord
   end
 
   def can_edit?(user)
-    if word.status == STATUS_DRAFT
+    # FIXME
+    if true  # word.status == STATUS_DRAFT
       can_edit_draft?(user)
     else
       user.admin? || owner?(user)
@@ -41,7 +42,9 @@ class Word < ApplicationRecord
   end
 
   def can_claim?(user)
-    word.status == STATUS_UNCLAIMED && user.present?
+    # FIXME
+    # @word.status == STATUS_UNCLAIMED && user.present?
+    user.present?
   end
 
   def owner?(user)
