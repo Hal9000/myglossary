@@ -12,13 +12,18 @@ class Word < ApplicationRecord
 
   belongs_to :user, optional: true
 
+  before_validation :remove_user_if_unclaimed
+
+  def remove_user_if_unclaimed
+    self.user_id = nil if status == STATUS_UNCLAIMED
+  end
+
   def can_edit_draft?(user)
     user.admin?
   end
 
   def can_edit?(user)
-    # FIXME
-    if true  # word.status == STATUS_DRAFT
+    if status == STATUS_DRAFT
       can_edit_draft?(user)
     else
       user.admin? || owner?(user)
@@ -42,8 +47,7 @@ class Word < ApplicationRecord
   end
 
   def can_claim?(user)
-    # FIXME
-    # @word.status == STATUS_UNCLAIMED && user.present?
+    status == STATUS_UNCLAIMED && user.present?
     user.present?
   end
 

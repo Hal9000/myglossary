@@ -53,6 +53,10 @@
       <%= f.submit "Claim and Update", :class => 'btn btn-info' %>
     <% end %>
 
+    <% if available_actions.include?(:unclaim) %>
+      <%= f.submit "Unclaim and Update", :class => 'btn btn-info' %>
+    <% end %>
+
     <% if available_actions.include?(:save) %>
       <%= f.submit "Save", :class => 'btn btn-primary' if @word.persisted? %>
     <% end %>

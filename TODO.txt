@@ -1,10 +1,6 @@
 Todo
-  Suggest you rerun db:seed (3 users: admin, worker, rando - all @foo.bar - passwd = username + "1")
-  See all FIXME comments
-  See usertests.txt - seem ok?
-  Claim a word, then click word - Update doesn't work?
   (unsure) For admin - make status a dropdown and allow changing/saving??
-  (not essential) Help me get pg working on Mac? 
+  (not essential) Help me get pg working on Mac?
   Deploy to my server
 
 Needs Review
@@ -13,6 +9,10 @@ Needs Review
 Maybe Later
   automated tests for user/permissions stuff??
 
+Tests
+  usertests.txt
+
+x Claim a word, then click word - Update doesn't work?
 x See file states.txt
 x textarea cols: 50 not working
 x proper way to add "legend" to right of word notes field?

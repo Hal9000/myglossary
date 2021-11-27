@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def redirect_with_error(error_message, redirect_path)
+    flash[:error] = error_message
+    redirect_to redirect_path
+  end
+
   protected
 
   def configure_permitted_parameters
