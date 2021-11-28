@@ -1,31 +1,58 @@
+  . = passing
+  x = failing
+  - = untested
+
        User             Page/action                 Expected result
        ---------------  -----------------------     -------------------
-P   0. Not logged in    (anywhere)                  Login/signup page
+.   0. Not logged in    (anywhere)                  Login/signup page
 
-P   1. admin            hit index                   Just works. Has "New word" button
-P   2. admin            hover over word             Shows owner
-P   3. admin            click icon: unclaimed       Word is claimed, go back to index
-P   4. admin            click unclaimed word        Edit page. Has buttons: Update Claim Hide Destroy Cancel
-P   5. admin            click claimed word          Edit page. Has buttons: Update Unclaim Hide Destroy Cancel
-P   6. admin            click in-prog word          Edit page. Has buttons: Update Save Unclaim Hide Destroy Cancel
-P   7. admin            click draft word            Edit page. Has buttons: Update Complete Unclaim Hide Destroy Cancel
-P   8. admin            click completed word        Edit page. Has buttons: Update Hide Destroy Cancel
+.   1. admin            hit index                   Just works. Has "New word" button
+.   2. admin            hover over word             Shows owner
+.   3. admin            click icon: unclaimed       Word is claimed, go back to index
+.   4. admin            click unclaimed word        Edit page. Has buttons: Update Claim Hide Destroy Cancel
+.   5. admin            click claimed word          Edit page. Has buttons: Update Unclaim Hide Destroy Cancel
+.   5b                  Update button               Update, go to index
+.   5c                  Unclaim button              Change owner/status, update, go to index
+x   6. admin            click in-prog word          Edit page. Has buttons: Update Save Unclaim Hide Destroy Cancel
+x   6b                  Save button                 State is now draft, go to index
+-   7. admin            click draft word            Edit page. Has buttons: Update Complete Unclaim Hide Destroy Cancel
+-   7b                  Complete button             State is now complete, go to index
+-   8. admin            click completed word        Edit page. Has buttons: Update Hide Destroy Cancel
 
-P   9. worker           hit index                   Just works. No "New word"
-P  10. admin            hover over word             Shows owner
-P  11. worker           click icon: unclaimed       Word is claimed, go back to index
-P  12. worker           click unclaimed word        Show page  (add Claim button??)
-   13. worker           click my claimed word       Edit page. Has buttons: Update Unclaim Cancel
-   14. worker           click word (not mine)       Show page
-   15. worker           click my in-prog word       Edit page. Has buttons: Update Save Unclaim Cancel
-   16. worker           click my draft word         Show page
-   17. worker           click my completed word     Show page
+.   9. worker           hit index                   Just works. No "New word"
+.  10. admin            hover over word             Shows owner
+.  11. worker           click icon: unclaimed       Word is claimed, go back to index
+.  12. worker           click unclaimed word        Show page  (add Claim button??)
+.  13. worker           click my claimed word       Edit page. Has buttons: Update Unclaim Cancel
+.  13b                  Update button               Update, go to index
+.  13c                  Unclaim button              Change owner/status, update, go to index
+.  14. worker           click word (not mine)       Show page
+.  15. worker           click my in-prog word       Edit page. Has buttons: Update Save Unclaim Cancel
+x  15b                  Save button                 State is now draft, go to index
+-  16. worker           click my draft word         Show page
+-  17. worker           click my completed word     Show page
 
-P  18. rando            hit index                   Just works. No "New word"
-P  19. admin            hover over word             Shows owner
-P  20. rando            click icon: unclaimed       Word is claimed, go back to index
-   21. rando            click unclaimed word        Show page  (add Claim button??)
-   22. rando            click claimed/"not mine"    Show page
-   23. rando            click in-prog/"not mine"    Show page
-   24. rando            click draft/"not mine"      Show page
-   25. rando            click complete/"not mine"   Show page
+.  18. rando            hit index                   Just works. No "New word"
+.  19. rando            hover over word             Shows owner
+.  20. rando            click icon: unclaimed       Word is claimed, go back to index
+.  21. rando            click unclaimed word        Show page  (add Claim button??)
+.  22. rando            click claimed/"not mine"    Show page
+.  23. rando            click in-prog/"not mine"    Show page
+.  24. rando            click draft/"not mine"      Show page
+.  25. rando            click complete/"not mine"   Show page
+
+.  26. admin            unclaim "my" word           unclaimed, no owner, go to index
+.  27. admin            unclaim "not my" word       unclaimed, no owner, go to index
+.  28. admin            update my word              in progress, go to index
+.  29. admin            update "not my" word        in progress, owner same, go to index
+-  30. admin            Save my in-prog word        draft, go to index
+-  31. admin            Save "not my" in-prog word  draft, go to index
+.  32. admin            cancel (any word)           just returns to index
+
+-  33. worker           unclaim "my" word           unclaimed, no owner, go to index
+-  34. worker           update my word              in progress, go to index
+-  35. worker           Save my in-prog word        draft, go to index
+.  36. worker           cancel (any word)           just returns to index
+
+.  37. rando            click worker's word         Show page
+.  38. rando            click admin's word          Show page

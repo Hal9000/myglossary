@@ -88,8 +88,8 @@ class WordsController < ApplicationController
     @word.status = "unclaimed"
     @word.save
     respond_to do |format|
-        format.html { redirect_to words_url, notice: "Marked unclaimed" }
-        format.json { render :show, status: :ok, location: @word }
+      format.html { redirect_to words_url, notice: "Marked unclaimed" }
+      format.json { render :show, status: :ok, location: @word }
     end
   end
 
@@ -100,8 +100,8 @@ class WordsController < ApplicationController
     @word.user_id = current_user.id
     @word.save
     respond_to do |format|
-        format.html { redirect_to words_url, notice: "Something didn't hit the fan" }
-        format.json { render :show, status: :ok, location: @word }
+      format.html { redirect_to words_url }  # , notice: "Something didn't hit the fan" }
+      format.json { render :show, status: :ok, location: @word }
     end
   end
 
