@@ -43,6 +43,7 @@ class WordsController < ApplicationController
     respond_to do |format|
       word_hash = word_params
       if params[:commit].downcase.include?("save")
+        word_hash[:status] = Word::STATUS_DRAFT
       elsif params[:commit].downcase.include?("unclaim")
         word_hash[:status] = Word::STATUS_UNCLAIMED
       elsif params[:commit].downcase.include?("claim")
@@ -111,8 +112,20 @@ class WordsController < ApplicationController
       @word = Word.find(params[:id])
     end
 
+    def permitted_params_non_admin
+      [:definition, :status, :notes]
+    end
+
+    def permitted_params_admin
+      [:word, :definition, :status, :user_id, :notes]
+    end
+
+    def permitted_params
+      current_user.admin? ? permitted_params_admin : permitted_params_non_admin
+    end
+
     # Only allow a list of trusted parameters through.
     def word_params
-      params.require(:word).permit(:word, :definition, :status, :user_id, :notes)
+      params.require(:word).permit(permitted_params)
     end
 end

@@ -1,24 +1,25 @@
 Todo
-  Non-admin shouldn't be able to edit "word itself" (word.word field)
   Should Gemfile.lock be in git??
-  No error msg on bad password
   See usertests.txt - added 20 tests, some redundant? - most tests passing
-  Save not working?? (confusion with activerecord #save perhaps??)
-  (unsure) Add events to notes field?  "2021/11/30... Edited by John Smith"
+  (unsure) Add events to notes field?  "2021/11/30... Edited by John Smith" => https://github.com/paper-trail-gem/paper_trail
   Export feature (see export.rb)
   (not essential) Help me get pg working on Mac?
   Deploy to my server
   (unsure) For admin - make status a dropdown and allow changing/saving??
-  Q: are you interested in future projects, and should/can we go outside u p w o r k ?
-     For example: Rails app at https://links.openspace.foundation 
+  Add some indication of current status to the edit page
+  Q: are you interested in future projects
+     For example: Rails app at https://links.openspace.foundation
        - Needs some tweaks and features
        - Also wondered if we could add Devise and *share* same users as glossary app??
 
 Needs Review
   Add controller level access restrictions (IE: prevent non-admins from creating words at the controller level)
+  Save not working?? (confusion with activerecord #save perhaps??)
+  Non-admin shouldn't be able to edit "word itself" (word.word field)
 
 Maybe Later
   automated tests for user/permissions stuff??
+  Dismissable alerts
 
 Tests
   usertests.txt

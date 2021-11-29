@@ -69,7 +69,7 @@ module WordsHelper
       {
         Word::STATUS_UNCLAIMED   => [:claim]   + admin_usual,
         Word::STATUS_CLAIMED     => [:unclaim] + admin_usual,
-        Word::STATUS_IN_PROGRESS => [:unclaim] + admin_usual,
+        Word::STATUS_IN_PROGRESS => [:unclaim, :save] + admin_usual,
         Word::STATUS_DRAFT       => [:save]    + admin_usual,     # rename save??
         Word::STATUS_COMPLETED   => admin_usual
       }
