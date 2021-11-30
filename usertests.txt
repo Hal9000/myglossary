@@ -13,8 +13,8 @@
 .   5. admin            click claimed word          Edit page. Has buttons: Update Unclaim Hide Destroy Cancel
 .   5b                  Update button               Update, go to index
 .   5c                  Unclaim button              Change owner/status, update, go to index
-x   6. admin            click in-prog word          Edit page. Has buttons: Update Save Unclaim Hide Destroy Cancel
-x   6b                  Save button                 State is now draft, go to index
+.   6. admin            click in-prog word          Edit page. Has buttons: Update Save Unclaim Hide Destroy Cancel
+.   6b                  Save button                 State is now draft, go to index
 -   7. admin            click draft word            Edit page. Has buttons: Update Complete Unclaim Hide Destroy Cancel
 -   7b                  Complete button             State is now complete, go to index
 -   8. admin            click completed word        Edit page. Has buttons: Update Hide Destroy Cancel
@@ -28,7 +28,7 @@ x   6b                  Save button                 State is now draft, go to in
 .  13c                  Unclaim button              Change owner/status, update, go to index
 .  14. worker           click word (not mine)       Show page
 .  15. worker           click my in-prog word       Edit page. Has buttons: Update Save Unclaim Cancel
-x  15b                  Save button                 State is now draft, go to index
+.  15b                  Save button                 State is now draft, go to index
 -  16. worker           click my draft word         Show page
 -  17. worker           click my completed word     Show page
 

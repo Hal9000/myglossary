@@ -1,7 +1,7 @@
 <% if @word.errors.any? %>
   <div id="error_expl" class="panel panel-danger">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= pluralize(@word.errors.count, "error") %> prohibited this word from being saved:</h3>
+      <h3 class="panel-title">Couldn't save word! <%= pluralize(@word.errors.count, "error") %>:</h3>
     </div>
     <div class="panel-body">
       <ul>
@@ -14,9 +14,15 @@
 <% end %>
 
 <div class="form-group">
+  <b>Status:</b> <%= "FIXME" %> <b>Owner:</b> <%= "FIXME" %><br>
+  <br>
   <%= f.label :word, :class => 'control-label col-lg-2' %>
   <div class="col-lg-12">
-    <%= f.text_field :word, :class => 'form-control' %>
+    <% if current_user.admin? %>
+      <%= f.text_field :word, :class => 'form-control' %>
+    <% else %>
+      <h3><%= @word.word %></h3> 
+    <% end %>
   </div>
   <%=f.error_span(:word) %>
 </div>

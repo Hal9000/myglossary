@@ -6,11 +6,6 @@ ruby '2.7.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.4'
 
-if ENV["DEV_NAME"].to_s.downcase == "mykl"
-  gem 'pg'
-else
-  gem 'sqlite3', '~> 1.4'
-end
 
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
@@ -42,6 +37,11 @@ gem 'jquery-rails'
 gem 'devise-bootstrap-views', '~> 1.0'
 
 group :development, :test do
+  if ENV["DEV_NAME"].to_s.downcase == "mykl"
+    gem 'pg'
+  else
+    gem 'sqlite3', '~> 1.4'
+  end
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -61,6 +61,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :production do 
+  gem 'mysql2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
