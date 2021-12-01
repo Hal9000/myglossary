@@ -14,14 +14,14 @@
 <% end %>
 
 <div class="form-group">
-  <b>Status:</b> <%= "FIXME" %> <b>Owner:</b> <%= "FIXME" %><br>
+  <b>Status:</b> <%= @word.status.titleize %> <b>Owner:</b> <%= @word.user.present? ? @word.user.name : "Unclaimed" %><br>
   <br>
   <%= f.label :word, :class => 'control-label col-lg-2' %>
   <div class="col-lg-12">
     <% if current_user.admin? %>
       <%= f.text_field :word, :class => 'form-control' %>
     <% else %>
-      <h3><%= @word.word %></h3> 
+      <h3><%= @word.word %></h3>
     <% end %>
   </div>
   <%=f.error_span(:word) %>
