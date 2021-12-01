@@ -63,8 +63,10 @@ group :test do
   gem 'webdrivers'
 end
 
-group :production do 
-  gem 'mysql2'
+group :production do
+  unless ENV["DEV_NAME"].to_s.downcase == "mykl"
+    gem 'mysql2'
+  end
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
