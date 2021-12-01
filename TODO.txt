@@ -1,8 +1,8 @@
 Todo
-  Index page "jumps" when flash is overwritten (e.g. - "Successful login" - now claim a word)
   Deploy to my server  (NOTE: I am using mysql2, not postgresql! I remembered incorrectly.)
 
 Needs Review
+  Index page "jumps" when flash is overwritten (e.g. - "Successful login" - now claim a word)
   Add some indication of current status to the edit page
   Export: Get export working
 
