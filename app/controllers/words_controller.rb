@@ -4,6 +4,15 @@ class WordsController < ApplicationController
   # GET /words or /words.json
   def index
     @words = Word.all
+
+    respond_to do |format|
+      format.html
+      format.text do
+        @words = @words.all
+
+        send_data @words.to_txt, filename: "words-#{Date.today}.txt"
+      end
+    end
   end
 
   # GET /words/1 or /words/1.json
@@ -103,6 +112,7 @@ class WordsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to words_url }  # , notice: "Something didn't hit the fan" }
       format.json { render :show, status: :ok, location: @word }
+      format.js
     end
   end
 

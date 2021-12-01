@@ -75,4 +75,29 @@ class Word < ApplicationRecord
 
     grouping
   end
+
+  def self.to_txt
+    out = []
+
+    all.each do |word|
+      out.push ". ---------------------------\n "    # just for visibility
+      out.push ".term #{word.word}"
+      out.push ".  #{word.user&.name}"
+      out.push ".  #{word.status}"
+      out.push ".  #{word.updated_at}"
+      out.push   # blank line just to be pretty
+      defn = word.definition
+      defn = "(no definition yet)\n" unless defn.present?
+      out.push "@definition\n#{defn}@end"
+      notes = word.notes
+      if notes.present?     # omit if empty
+        out.push  # blank line between definition and notes
+        out.push "@notes\n#{notes}@end"
+      end
+      out.push ".end\n "   # extra blank line
+    end
+
+
+    out.join("\n")
+  end
 end

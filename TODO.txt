@@ -1,13 +1,13 @@
 Todo
   Index page "jumps" when flash is overwritten (e.g. - "Successful login" - now claim a word)
-  Export: (see export.rb) - how to add button? 
-  Export: How to do filtering? checkbox for each status??
   Deploy to my server  (NOTE: I am using mysql2, not postgresql! I remembered incorrectly.)
 
 Needs Review
   Add some indication of current status to the edit page
+  Export: Get export working
 
 Maybe Later
+  Export: How to do filtering? checkbox for each status??
   Dismissable alerts
   (unsure) For admin - make status a dropdown and allow changing/saving??
   automated tests for user/permissions stuff??

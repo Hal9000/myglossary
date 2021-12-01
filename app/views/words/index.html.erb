@@ -2,7 +2,7 @@
   Words
   <% if admin? %>  <!-- logged in as HAL -->
     <%= link_to 'New Word', new_word_path, class: "btn btn-primary btn-sm" %>
-    <%= link_to 'Export (FIXME)', new_word_path, class: "btn btn-primary btn-sm" %>
+    <%= link_to 'Export', words_path(format: :text), class: "btn btn-primary btn-sm" %>
   <% end %>
 </h1>
 
@@ -14,28 +14,8 @@
   <hr>
   <div class="row">
     <% entries.each do |word| %>
-      <div class='col-md-4'>
-        <% icon_path_data = index_action_path_data(word, current_user) %>
-
-        <% if icon_path_data.present? %>
-          <% path = icon_path_data[:icon_path] %>
-          <% method = icon_path_data[:icon_method] %>
-
-          <% if path.present? %>
-            <%# One live to avoid undercore issue %>
-            <%= link_to send(path, word), method: method do %><img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2"><% end %>
-          <% else %>
-            <img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2">
-          <% end %>
-        <% else %>
-          <img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2">
-        <% end %>
-
-        <% if icon_path_data&.dig(:link_path).present? %>
-          <%= link_to word.word, send(icon_path_data.dig(:link_path), word), style: "text-decoration: none", title: "Owner: #{word&.user&.name || "unclaimed"}" %>
-        <% else %>
-          <span title="Owner: #{word&.user&.name || "unclaimed"}"><%= word.word %></span>
-        <% end %>
+      <div class='col-md-4' id='index-word-<%= word.id %>'>
+        <%= render partial: "words/index/word", locals: {word: word} %>
       </div>
     <% end %>
   </div>
