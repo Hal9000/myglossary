@@ -1,21 +1,35 @@
-<% icon_path_data = index_action_path_data(word, current_user) %>
+<% 
+   icon_path_data = index_action_path_data(word, current_user)
 
-<% if icon_path_data.present? %>
-  <% path = icon_path_data[:icon_path] %>
-  <% method = icon_path_data[:icon_method] %>
+   path = icon_path_data[:icon_path]
+   method = icon_path_data[:icon_method]
+   if icon_path_data.present? && path.present?
+     icon   = "/icons/#{word.status}.png"
+     image  = "<img src='#{icon}' width=16 height=16 " + 
+              "title='Status is #{word.status}' class='mx-2'>"
+     title  = "Status is #{word.status}"
+     stuff  = "src='#{icon}' width=16 height=16 title='#{title}' class='mx-2'"
 
-  <% if path.present? %>
-    <%# One live to avoid undercore issue %>
-    <%= link_to send(path, word), remote: true, method: method do %><img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2"><% end %>
-  <% else %>
-    <img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2">
-  <% end %>
-<% else %>
-  <img src="/icons/<%= word.status %>.png" width=16 height=16 title="status is <%= word.status %>" class="mx-2">
-<% end %>
+     args = [send(path, word), {remote: true, method: method, style: "text-decoration: none"}]
+%>
+    <%= link_to(*args) do %> <img src='<%= icon %>' <%= stuff %> title="<%= title %>""> <% end %>
+<% 
+   else 
+%>
+       <img src='<%= icon %>' <%= stuff %> title="<%= title %>>
+<% 
+   end
 
-<% if icon_path_data&.dig(:link_path).present? %>
-  <%= link_to word.word, send(icon_path_data.dig(:link_path), word), style: "text-decoration: none", title: "Owner: #{word&.user&.name || "unclaimed"}" %>
-<% else %>
-  <span title="Owner: #{word&.user&.name || "unclaimed"}"><%= word.word %></span>
-<% end %>
+   owned = "Owner: #{word&.user&.name || 'none'}"
+   if icon_path_data&.dig(:link_path).present?
+     args = [word.word, send(icon_path_data.dig(:link_path), word), 
+             {style: "text-decoration: none", title: owned}]
+%>
+     <%= link_to(*args) %>
+<% 
+   else
+%>
+     <span title='<%= owned %>'><%= word.word %></span>
+<% 
+   end 
+%>

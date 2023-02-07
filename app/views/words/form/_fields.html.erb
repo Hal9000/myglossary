@@ -44,7 +44,7 @@
 
 <div class="form-group">
   <div class="col-lg-offset-2 col-lg-12">
-    <%- available_actions = edit_action_data_lookup(@word, current_user).to_h.dig(@word.status) %>
+    <% available_actions = edit_action_data_lookup(@word, current_user).to_h.dig(@word.status) %>
 
     <% if available_actions.include?(:update) %>
       <%= f.submit nil, :class => 'btn btn-primary' %>
