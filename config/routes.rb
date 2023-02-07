@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'pages/home'
   devise_for :users
 
-  post '/words/:id/claim_word', to: 'words#claim', as: 'claim_word'
+  get '/words/:id/claim_word', to: 'words#claim', as: 'claim_word'
 
   resources :words do
     member do

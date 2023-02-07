@@ -105,7 +105,6 @@ class WordsController < ApplicationController
 
   def claim
     return redirect_with_error("You cannot do that", words_url) unless @word.can_claim?(current_user)
-    fail
 
     @word.status = "claimed"
     @word.user_id = current_user.id
